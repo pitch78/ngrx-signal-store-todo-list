@@ -1,7 +1,7 @@
 import {Todo} from "../model/todo.model";
 import {patchState, signalStore, withMethods, withState} from "@ngrx/signals";
 import {inject} from "@angular/core";
-import {TodosService} from "../../services/todos.service";
+import {TodosService} from "../services/todos.service";
 
 export type TodosFilter = "all" | "pending" | "completed";
 

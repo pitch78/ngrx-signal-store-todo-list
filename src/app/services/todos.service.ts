@@ -1,5 +1,5 @@
 import {Injectable} from "@angular/core";
-import {TODOS} from "../app/model/mock-data";
+import {TODOS} from "../model/mock-data";
 
 @Injectable({providedIn: 'root'})
 export class TodosService {
