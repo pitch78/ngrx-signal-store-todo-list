@@ -1,14 +1,14 @@
 import {Injectable} from "@angular/core";
 import {TODOS} from "../model/mock-data";
+import {Todo} from "../model/todo.model";
 
 @Injectable({providedIn: 'root'})
 export class TodosService {
-  async getTodos() {
-    await sleep(1000);0
-    return TODOS;
+  async getTodos(): Promise<Todo[]> {
+    return await getTodosFromBackend();
   }
 }
 
-const sleep = async (delay_ms: number) => {
-  return new Promise(resolve => setTimeout(resolve, delay_ms));
+const getTodosFromBackend = async (): Promise<Todo[]> => {
+  return new Promise(resolve => setTimeout(() => resolve(TODOS), 1000));
 }
