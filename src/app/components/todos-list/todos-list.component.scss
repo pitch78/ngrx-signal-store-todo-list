@@ -12,6 +12,9 @@
 .todo-item {
   display: flex;
   align-items: center;
+  span.completed {
+    text-decoration: 3px deeppink line-through;
+  }
 }
 
 .delete-todo {

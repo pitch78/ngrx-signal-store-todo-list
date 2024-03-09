@@ -2,6 +2,7 @@ import {Todo} from "../model/todo.model";
 import {patchState, signalStore, withMethods, withState} from "@ngrx/signals";
 import {inject} from "@angular/core";
 import {TodosService} from "../services/todos.service";
+import {state} from "@angular/animations";
 
 export type TodosFilter = "all" | "pending" | "completed";
 
@@ -36,6 +37,11 @@ export const TodosStore = signalStore(
       async deleteTodo(id: number) {
         const idOfRemovedTodo = await todoService.deleteTodo(id);
         patchState(store, (state) => ({...state, todos: state.todos.filter(todo => todo.id !== idOfRemovedTodo)}))
+      },
+
+      async updateTodo(id: number, completed: boolean) {
+        await todoService.updateTodo(id, completed);
+        patchState(store, (state) => ({todos: state.todos.map(todo => todo.id === id ? {...todo, completed} : todo)}));
       }
     })
   )

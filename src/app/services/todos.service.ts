@@ -15,8 +15,11 @@ export class TodosService {
   async deleteTodo(id: number) {
     return await mockBackendCall(id);
   }
-}
 
+  async updateTodo(id: number, completed: boolean) {
+    return await mockBackendCall(id);
+  }
+}
 
 const mockBackendCall = async (response: any): Promise<any> => {
   return new Promise(resolve => setTimeout(() => resolve(response), 1000));
