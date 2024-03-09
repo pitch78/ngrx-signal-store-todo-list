@@ -29,4 +29,14 @@ import {MatProgressSpinner} from "@angular/material/progress-spinner";
 })
 export class TodosListComponent {
   store = inject(TodosStore);
+
+  async onAddTodo(target: HTMLInputElement) {
+    await this.store.addTodo(target.value);
+    target.value = "";
+  }
+
+  async onDeleteTodo(event: MouseEvent, id: number) {
+    event.stopPropagation();
+    await this.store.deleteTodo(id);
+  }
 }
