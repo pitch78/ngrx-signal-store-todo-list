@@ -5,7 +5,7 @@
   <mat-icon matSuffix>edit</mat-icon>
 </mat-form-field>
 
-<mat-button-toggle-group #filter>
+<mat-button-toggle-group #filter (change)="onFilterTodo($event)">
   <mat-button-toggle value="all">All</mat-button-toggle>
   <mat-button-toggle value="pending">Pending</mat-button-toggle>
   <mat-button-toggle value="completed">Completed</mat-button-toggle>
@@ -15,7 +15,7 @@
   <mat-spinner/>
 } @else {
   <mat-selection-list class="todos-list">
-    @for (todo of store.todos(); track todo.id; let index = $index) {
+    @for (todo of store.filteredTodos(); track todo.id; let index = $index) {
       <mat-list-option (selectedChange)="onToggleTodoCompletion(todo.id, $event)" [selected]="todo.completed">
         <div class="todo-item">
           <mat-icon class="delete-todo" (click)="onDeleteTodo($event, todo.id)">delete</mat-icon>
@@ -25,5 +25,5 @@
       </mat-list-option>
     }
   </mat-selection-list>
-  <div>{{ store.todos() | json }}</div>
+  <div>{{ store.filter() | json }}</div>
 }
